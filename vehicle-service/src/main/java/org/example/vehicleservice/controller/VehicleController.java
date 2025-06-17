@@ -5,13 +5,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/vehicle")
+@RequestMapping("api/v1/vehicle")
 @RestController
 public class VehicleController {
 
 
-    @GetMapping("/vehicle")
+    @GetMapping("vehicle")
     public String getVehicle() {
+
         return "vehicle";
     }
 }
