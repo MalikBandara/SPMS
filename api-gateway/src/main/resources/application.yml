@@ -20,6 +20,7 @@ spring:
           uri: lb://parking-service
           predicates:
             - Path=/api/v1/parking/**
+
         - id: payment-service
           uri: lb://payment-service
           predicates:
