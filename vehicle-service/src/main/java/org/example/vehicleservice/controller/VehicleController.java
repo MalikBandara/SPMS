@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping("api/v1/vehicle")
 @RestController
 public class VehicleController {
@@ -28,5 +30,10 @@ public class VehicleController {
     @GetMapping("/{numberPlate}")
     public ResponseEntity<VehicleResponse> getVehicleByNumberPlate(@PathVariable String numberPlate){
         return ResponseEntity.ok(vehicleService.getVehicleByNumberPlate(numberPlate));
+    }
+
+    @GetMapping
+    public ResponseEntity <List<VehicleResponse>> getAllVehicles() {
+        return ResponseEntity.ok(vehicleService.getAllVehicles());
     }
 }

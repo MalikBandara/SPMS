@@ -11,6 +11,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 public class VehicleServiceImpl implements VehicleService {
@@ -49,6 +51,16 @@ public class VehicleServiceImpl implements VehicleService {
             Vehicle vehicle = vehicleRepository.findByNumberPlate(numberPlate).get();
             return modelMapper.map(vehicle, VehicleResponse.class);
 
+        }
+    }
+
+    @Override
+    public List<VehicleResponse>  getAllVehicles() {
+        try {
+            List<Vehicle> all = vehicleRepository.findAll();
+            return all.stream().map(vehicle -> modelMapper.map(vehicle, VehicleResponse.class)).toList();
+        }catch(Exception e ){
+            throw new NotFoundException("No vehicle found");
         }
     }
 }
