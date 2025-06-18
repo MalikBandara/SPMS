@@ -1,8 +1,9 @@
 package org.example.vehicleservice.service.impl;
 
 import org.example.vehicleservice.advisor.ConflictException;
-import org.example.vehicleservice.dto.VehicleRequest;
-import org.example.vehicleservice.dto.VehicleResponse;
+import org.example.vehicleservice.advisor.NotFoundException;
+import org.example.vehicleservice.dto.request.VehicleRequest;
+import org.example.vehicleservice.dto.response.VehicleResponse;
 import org.example.vehicleservice.entity.Vehicle;
 import org.example.vehicleservice.repo.VehicleRepository;
 import org.example.vehicleservice.service.VehicleService;
@@ -35,6 +36,17 @@ public class VehicleServiceImpl implements VehicleService {
                     .build();
             vehicleRepository.save(vehicle);
 
+            return modelMapper.map(vehicle, VehicleResponse.class);
+
+        }
+    }
+
+    @Override
+    public VehicleResponse getVehicleByNumberPlate(String numberPlate) {
+        if(!vehicleRepository.existsByNumberPlate(numberPlate)){
+            throw new NotFoundException("Vehicle with license plate" + numberPlate + "does not exist");
+        }else {
+            Vehicle vehicle = vehicleRepository.findByNumberPlate(numberPlate).get();
             return modelMapper.map(vehicle, VehicleResponse.class);
 
         }

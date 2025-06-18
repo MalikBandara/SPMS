@@ -2,10 +2,8 @@ package org.example.vehicleservice.controller;
 
 
 import jakarta.validation.Valid;
-import org.example.vehicleservice.dto.VehicleRequest;
-import org.example.vehicleservice.dto.VehicleResponse;
-import org.example.vehicleservice.entity.Vehicle;
-import org.example.vehicleservice.repo.VehicleRepository;
+import org.example.vehicleservice.dto.request.VehicleRequest;
+import org.example.vehicleservice.dto.response.VehicleResponse;
 import org.example.vehicleservice.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +21,12 @@ public class VehicleController {
 
 
     @PostMapping
-    private ResponseEntity<VehicleResponse> registerNewVehicle(@RequestBody @Valid VehicleRequest NewVehicle){
+    public ResponseEntity<VehicleResponse> registerNewVehicle(@RequestBody @Valid VehicleRequest NewVehicle){
         return ResponseEntity.status(HttpStatus.CREATED).body(vehicleService.registerNewVehicle(NewVehicle));
+    }
+
+    @GetMapping("/{numberPlate}")
+    public ResponseEntity<VehicleResponse> getVehicleByNumberPlate(@PathVariable String numberPlate){
+        return ResponseEntity.ok(vehicleService.getVehicleByNumberPlate(numberPlate));
     }
 }
