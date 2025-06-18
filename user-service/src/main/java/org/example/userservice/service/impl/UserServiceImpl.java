@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -42,5 +43,17 @@ public class UserServiceImpl implements UserService {
         }else {
             throw new ConflictException("User with id " + id + " does not exist");
         }
+    }
+
+    @Override
+    public List<UserResponse> getAllUsers() {
+
+        if(userRepository.findAll().isEmpty()){
+            throw new ConflictException("No users found");
+        }else {
+            List<User> all = userRepository.findAll();
+            return all.stream().map(user -> modelMapper.map(user, UserResponse.class)).toList();
+        }
+
     }
 }
