@@ -10,8 +10,5 @@ import org.springframework.web.bind.annotation.RestController;
 public class ParkingServiceController {
 
 
-    @GetMapping("parking")
-    public String getParking() {
-        return "parking";
-    }
+
 }
