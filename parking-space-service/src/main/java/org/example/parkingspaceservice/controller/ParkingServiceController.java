@@ -1,13 +1,28 @@
 package org.example.parkingspaceservice.controller;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.example.parkingspaceservice.dto.ParkingRequest;
+import org.example.parkingspaceservice.dto.ParkingResponse;
+import org.example.parkingspaceservice.service.ParkingService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/v1/parking")
 public class ParkingServiceController {
+
+    @Autowired
+    private ParkingService parkingService;
+
+    @PostMapping
+    public ResponseEntity<ParkingResponse> createParkingSpace(@RequestBody ParkingRequest parkingRequest){
+        ParkingResponse parkingSpace = parkingService.createParkingSpace(parkingRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(parkingSpace);
+    }
+
+
 
 
 
