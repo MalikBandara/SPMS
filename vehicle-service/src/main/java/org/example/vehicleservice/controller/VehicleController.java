@@ -1,9 +1,11 @@
 package org.example.vehicleservice.controller;
 
 
-import jakarta.ws.rs.NotFoundException;
+import org.example.vehicleservice.dto.VehicleRequest;
+import org.example.vehicleservice.dto.VehicleResponse;
 import org.example.vehicleservice.entity.Vehicle;
-import org.example.vehicleservice.repo.VehicleRepo;
+import org.example.vehicleservice.repo.VehicleRepository;
+import org.example.vehicleservice.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,18 +17,12 @@ public class VehicleController {
 
 
     @Autowired
-    private VehicleRepo vehicleRepo;
+    private VehicleService vehicleService;
 
 
-//    @GetMapping("vehicle")
-//    public String getVehicle() {
-//
-//        return "vehicle";
-//    }
 
     @PostMapping("add")
-    private ResponseEntity<String> addVehicle(@RequestBody Vehicle vehicle){
-           vehicleRepo.save(vehicle);
-           return new ResponseEntity<>("Vehicle added successfully", HttpStatus.CREATED);
+    private ResponseEntity<VehicleResponse> registerNewVehicle(@RequestBody VehicleRequest NewVehicle){
+        return ResponseEntity.status(HttpStatus.CREATED).body(vehicleService.registerNewVehicle(NewVehicle));
     }
 }

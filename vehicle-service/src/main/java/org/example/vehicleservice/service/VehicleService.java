@@ -1,9 +1,14 @@
 package org.example.vehicleservice.service;
 
-import org.springframework.stereotype.Service;
+import org.example.vehicleservice.dto.VehicleRequest;
+import org.example.vehicleservice.dto.VehicleResponse;
 
-@Service
+
+
 public interface VehicleService {
 
 
+    VehicleResponse registerNewVehicle(VehicleRequest newVehicle);
 }
+
+
