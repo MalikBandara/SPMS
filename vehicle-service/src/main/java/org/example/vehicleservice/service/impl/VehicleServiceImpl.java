@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 
+
 @Service
 public class VehicleServiceImpl implements VehicleService {
 
@@ -63,4 +64,30 @@ public class VehicleServiceImpl implements VehicleService {
             throw new NotFoundException("No vehicle found");
         }
     }
+
+    @Override
+    public void deleteVehicleById(Long vehicleId) {
+        Vehicle vehicle = vehicleRepository.findById(vehicleId)
+                .orElseThrow(() -> new NotFoundException("Vehicle not found with number plate: " + vehicleId));
+        vehicleRepository.delete(vehicle);
+    }
+
+    @Override
+    public VehicleResponse updateVehicleById(String numberPlate, VehicleRequest newVehicle) {
+        Vehicle vehicle =  vehicleRepository.findByNumberPlate(numberPlate)
+                .orElseThrow(()-> new NotFoundException("vehicle with number plate " + numberPlate + "does not exist"));
+
+        vehicle.setNumberPlate(newVehicle.getNumberPlate());
+        vehicle.setModel(newVehicle.getModel());
+        vehicle.setColor(newVehicle.getColor());
+        vehicle.setUserId(newVehicle.getUserId());
+        vehicle.setCheckInTime(newVehicle.getCheckInTime());
+        vehicle.setCheckOutTime(newVehicle.getCheckOutTime());
+
+        vehicleRepository.save(vehicle);
+        return modelMapper.map(vehicle , VehicleResponse.class);
+
+    }
+
+
 }

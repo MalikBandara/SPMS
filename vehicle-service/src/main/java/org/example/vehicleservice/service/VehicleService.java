@@ -15,6 +15,11 @@ public interface VehicleService {
 
     List<VehicleResponse> getAllVehicles();
 
+
+
+    void deleteVehicleById(Long vehicleId);
+
+    VehicleResponse updateVehicleById(String numberPlate, VehicleRequest vehicleRequest);
 }
 
 

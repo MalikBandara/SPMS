@@ -12,4 +12,6 @@ public interface VehicleRepository extends JpaRepository<Vehicle, Long> {
     Optional<Vehicle> findByNumberPlate(String numberPlate);
     boolean existsByNumberPlate(String numberPlate);
 
+
+
 }
