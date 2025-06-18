@@ -1,6 +1,7 @@
 package org.example.vehicleservice.controller;
 
 
+import jakarta.validation.Valid;
 import org.example.vehicleservice.dto.VehicleRequest;
 import org.example.vehicleservice.dto.VehicleResponse;
 import org.example.vehicleservice.entity.Vehicle;
@@ -21,8 +22,8 @@ public class VehicleController {
 
 
 
-    @PostMapping("add")
-    private ResponseEntity<VehicleResponse> registerNewVehicle(@RequestBody VehicleRequest NewVehicle){
+    @PostMapping
+    private ResponseEntity<VehicleResponse> registerNewVehicle(@RequestBody @Valid VehicleRequest NewVehicle){
         return ResponseEntity.status(HttpStatus.CREATED).body(vehicleService.registerNewVehicle(NewVehicle));
     }
 }

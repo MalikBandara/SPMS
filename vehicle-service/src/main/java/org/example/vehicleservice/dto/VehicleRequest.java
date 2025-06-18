@@ -5,6 +5,8 @@ import lombok.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
+import java.time.LocalDateTime;
+
 @Data
 @Builder
 @NoArgsConstructor
@@ -16,4 +18,6 @@ public class VehicleRequest {
     private String color;
     @NotNull(message = "User ID is required")
     private Long userId;
+    private LocalDateTime checkInTime;
+    private LocalDateTime checkOutTime;
 }

@@ -1,5 +1,6 @@
 package org.example.vehicleservice.service.impl;
 
+import org.example.vehicleservice.advisor.ConflictException;
 import org.example.vehicleservice.dto.VehicleRequest;
 import org.example.vehicleservice.dto.VehicleResponse;
 import org.example.vehicleservice.entity.Vehicle;
@@ -22,13 +23,15 @@ public class VehicleServiceImpl implements VehicleService {
     @Override
     public VehicleResponse registerNewVehicle(VehicleRequest newVehicle) {
         if(vehicleRepository.existsByNumberPlate(newVehicle.getNumberPlate())){
-            throw new RuntimeException("Vehicle with license plate" + newVehicle.getNumberPlate() + "already exists");
+            throw new ConflictException("Vehicle with license plate" + newVehicle.getNumberPlate() + "already exists");
         }else {
             Vehicle vehicle = Vehicle.builder()
                     .numberPlate(newVehicle.getNumberPlate())
                     .model(newVehicle.getModel())
                     .color(newVehicle.getColor())
                     .userId(newVehicle.getUserId())
+                    .checkInTime(newVehicle.getCheckInTime())
+                    .checkOutTime(newVehicle.getCheckOutTime())
                     .build();
             vehicleRepository.save(vehicle);
 
