@@ -1,6 +1,4 @@
 package org.example.userservice.service.impl;
-
-import com.netflix.discovery.converters.Auto;
 import org.example.userservice.advisor.ConflictException;
 import org.example.userservice.dto.UserRequest;
 import org.example.userservice.dto.UserResponse;
@@ -12,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 
 @Service
@@ -53,6 +51,31 @@ public class UserServiceImpl implements UserService {
         }else {
             List<User> all = userRepository.findAll();
             return all.stream().map(user -> modelMapper.map(user, UserResponse.class)).toList();
+        }
+
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        if(userRepository.findById(id).isEmpty() || !userRepository.existsById(id)){
+            throw new ConflictException("user not found with id " + id );
+        }else {
+            userRepository.deleteById(id);
+        }
+    }
+
+    @Override
+    public UserResponse updateUser(Long id, UserRequest userRequest) {
+        if(userRepository.findById(id).isEmpty() || !userRepository.existsById(id)){
+            throw new ConflictException("user not found with id " + id );
+        }else {
+            User user = userRepository.findById(id).get();
+            user.setName(userRequest.getName());
+            user.setEmail(userRequest.getEmail());
+            user.setPhone(userRequest.getPhone());
+            user.setRole(userRequest.getRole());
+            user.setPassword(userRequest.getPassword());
+            return modelMapper.map(userRepository.save(user), UserResponse.class);
         }
 
     }

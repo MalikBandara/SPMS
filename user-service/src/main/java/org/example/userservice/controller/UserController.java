@@ -35,4 +35,20 @@ public class UserController {
         List<UserResponse> allUsers = userService.getAllUsers();
         return ResponseEntity.status(HttpStatus.OK).body(allUsers);
     }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<UserResponse> deleteUser(@PathVariable Long id ){
+        userService.deleteUser(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserResponse> updateUser(@PathVariable Long id , @RequestBody UserRequest userRequest){
+        UserResponse userResponse = userService.updateUser(id, userRequest);
+        return ResponseEntity.status(HttpStatus.OK).body(userResponse);
+    }
+
+
 }
