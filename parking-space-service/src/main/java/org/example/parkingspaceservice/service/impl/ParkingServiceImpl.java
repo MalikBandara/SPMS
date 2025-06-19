@@ -49,7 +49,7 @@ public class ParkingServiceImpl implements ParkingService {
                     .numberPlate(parkingRequest.getNumberPlate())
                     .ownerId(parkingRequest.getOwnerId())
                     .description(parkingRequest.getDescription())
-                    .lastUpdated(parkingRequest.getLastUpdated())
+                    .lastUpdated(LocalDateTime.now())
                     .build();
             parkingRepository.save(parking);
             return modelMapper.map(parking , ParkingResponse.class);
@@ -111,7 +111,7 @@ public class ParkingServiceImpl implements ParkingService {
                 parking.setNumberPlate(parkingRequest.getNumberPlate());
                 parking.setOwnerId(parkingRequest.getOwnerId());
                 parking.setDescription(parkingRequest.getDescription());
-                parking.setLastUpdated(parkingRequest.getLastUpdated());
+                parking.setLastUpdated(LocalDateTime.now());
         parkingRepository.save(parking);
         return  modelMapper.map(parking , ParkingResponse.class);
     }
