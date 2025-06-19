@@ -90,4 +90,28 @@ public class ParkingServiceImpl implements ParkingService {
                 .orElseThrow(() -> new NotFoundException("parking space not found with id " + id));
         return modelMapper.map(parking, ParkingResponse.class);
     }
+
+    @Override
+    public ParkingResponse updateParkingSpace(Long id, ParkingRequest parkingRequest) {
+
+        try {
+            userClient.getUserById(parkingRequest.getOwnerId()); // just validate
+        } catch (FeignException.NotFound e) {
+            throw new NotFoundException("Vehicle Owner not found with id " + parkingRequest.getOwnerId());
+        }
+
+        Parking parking = parkingRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Parking space not found wit id " + id));
+
+                parking.setLocation(parkingRequest.getLocation());
+                parking.setZone(parkingRequest.getZone());
+                parking.setType(parkingRequest.getType());
+                parking.setAvailable(parkingRequest.isAvailable());
+                parking.setNumberPlate(parkingRequest.getNumberPlate());
+                parking.setOwnerId(parkingRequest.getOwnerId());
+                parking.setDescription(parkingRequest.getDescription());
+                parking.setLastUpdated(parkingRequest.getLastUpdated());
+        parkingRepository.save(parking);
+        return  modelMapper.map(parking , ParkingResponse.class);
+    }
 }
