@@ -25,6 +25,9 @@ public interface ParkingService {
 
     List<ParkingResponse> getOccupiedParkingSpaces(boolean b);
 
+    Long getCountByZone(String zone);
+
+    void updateAvailability(Long id, boolean b);
 }
 
 

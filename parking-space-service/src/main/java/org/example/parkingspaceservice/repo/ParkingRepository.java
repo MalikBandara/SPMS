@@ -15,5 +15,10 @@ public interface ParkingRepository extends JpaRepository<Parking, Long> {
 
     List<Parking> findByIsAvailable(boolean available);
 
+    Long countByZone(String zone);
+
+    Long countByIsAvailableTrue();
+
+
 }
 

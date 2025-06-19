@@ -13,6 +13,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -115,6 +116,7 @@ public class ParkingServiceImpl implements ParkingService {
         return  modelMapper.map(parking , ParkingResponse.class);
     }
 
+    // get all the parking spaces by zone
     @Override
     public List<ParkingResponse> findByZone(String zone) {
         if(parkingRepository.findByZone(zone).isEmpty()){
@@ -126,10 +128,24 @@ public class ParkingServiceImpl implements ParkingService {
 
     }
 
+    // get all the available parking spaces
+
     @Override
     public List<ParkingResponse> getAvailableParkingSpaces(boolean b) {
         if(parkingRepository.findByIsAvailable(b).isEmpty()){
-            throw new NotFoundException("no available parking spaces found");
+            throw new NotFoundException("no release parking spaces found");
+        }else {
+            List<Parking> byAvailable = parkingRepository.findByIsAvailable(b);
+            return byAvailable.stream().map(parking -> modelMapper.map(parking , ParkingResponse.class)).toList();
+        }
+    }
+
+
+    // get all the reserved parking spaces
+    @Override
+    public List<ParkingResponse> getOccupiedParkingSpaces(boolean b) {
+        if(parkingRepository.findByIsAvailable(b).isEmpty()){
+            throw new NotFoundException("no reserved parking spaces found");
         }else {
             List<Parking> byAvailable = parkingRepository.findByIsAvailable(b);
             return byAvailable.stream().map(parking -> modelMapper.map(parking , ParkingResponse.class)).toList();
@@ -137,12 +153,22 @@ public class ParkingServiceImpl implements ParkingService {
     }
 
     @Override
-    public List<ParkingResponse> getOccupiedParkingSpaces(boolean b) {
-        if(parkingRepository.findByIsAvailable(b).isEmpty()){
-            throw new NotFoundException("no occupied parking spaces found");
-        }else {
-            List<Parking> byAvailable = parkingRepository.findByIsAvailable(b);
-            return byAvailable.stream().map(parking -> modelMapper.map(parking , ParkingResponse.class)).toList();
-        }
+    public Long getCountByZone(String zone) {
+         if(parkingRepository.countByZone(zone) == 0){
+             throw new NotFoundException("no parking spaces found in  " + zone);
+         }else {
+             return parkingRepository.countByZone(zone);
+         }
+
+    }
+
+    @Override
+    public void updateAvailability(Long id, boolean b) {
+        Parking parking = parkingRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Parking space not found with id " + id));
+
+        parking.setAvailable(b);
+        parking.setLastUpdated(LocalDateTime.now()); // optional
+        parkingRepository.save(parking);
     }
 }
