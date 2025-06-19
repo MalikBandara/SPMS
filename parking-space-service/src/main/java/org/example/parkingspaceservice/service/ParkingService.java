@@ -17,6 +17,8 @@ public interface ParkingService {
     ParkingResponse updateParkingSpace(Long id, ParkingRequest parkingRequest);
 
     List<ParkingResponse> findByZone(String zone);
+
+    List<ParkingResponse> getAvailableParkingSpaces(boolean b);
 }
 
 

@@ -13,5 +13,7 @@ public interface ParkingRepository extends JpaRepository<Parking, Long> {
 
     List<Parking> findByZone(String zone);
 
+    List<Parking> findByIsAvailable(boolean available);
+
 }
 
