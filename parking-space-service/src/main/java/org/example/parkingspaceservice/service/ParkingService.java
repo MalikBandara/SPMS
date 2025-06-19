@@ -12,6 +12,7 @@ public interface ParkingService {
 
     void deleteParkingSpace(Long id);
 
+    ParkingResponse getParkingSpaceById(Long id);
 }
 
 

@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 
 @Service
@@ -82,5 +82,12 @@ public class ParkingServiceImpl implements ParkingService {
 //        }else {
 //            parkingRepository.deleteById(id);
 //        }
+    }
+
+    @Override
+    public ParkingResponse getParkingSpaceById(Long id) {
+        Parking parking = parkingRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("parking space not found with id " + id));
+        return modelMapper.map(parking, ParkingResponse.class);
     }
 }

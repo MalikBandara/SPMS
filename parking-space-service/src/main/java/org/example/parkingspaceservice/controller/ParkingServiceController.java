@@ -32,6 +32,12 @@ public class ParkingServiceController {
         return  ResponseEntity.ok(parkingService.getAllParkingSpaces());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<ParkingResponse> getParkingSpaceById(@PathVariable Long id){
+        return ResponseEntity.ok(parkingService.getParkingSpaceById(id));
+
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ParkingResponse> deleteParkingSpace(@PathVariable Long id){
