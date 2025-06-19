@@ -24,7 +24,7 @@ public class Parking {
 
     private String type;  // Vehicle type or spot type (e.g., "Car", "Bike", "Large Vehicle")
 
-    private boolean isAvailable;  // Spot availability status (true = available, false = occupied)
+    private boolean isAvailable ;   // Spot availability status (true = available, false = occupied)
 
     private String numberPlate;  // Optional: if reserved, which vehicle's number plate is occupying the spot
 

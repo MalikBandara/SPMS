@@ -114,4 +114,15 @@ public class ParkingServiceImpl implements ParkingService {
         parkingRepository.save(parking);
         return  modelMapper.map(parking , ParkingResponse.class);
     }
+
+    @Override
+    public List<ParkingResponse> findByZone(String zone) {
+        if(parkingRepository.findByZone(zone).isEmpty()){
+            throw new NotFoundException("no parking spaces found in zone " + zone);
+        }else {
+            List<Parking> byZone = parkingRepository.findByZone(zone);
+            return  byZone.stream().map(parking -> modelMapper.map(parking , ParkingResponse.class)).toList();
+        }
+
+    }
 }

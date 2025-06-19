@@ -38,6 +38,12 @@ public class ParkingServiceController {
 
     }
 
+    @GetMapping("/zone/{zone}")
+    public ResponseEntity<List<ParkingResponse>> finByZone(@PathVariable String zone){
+        return ResponseEntity.ok(parkingService.findByZone(zone));
+
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ParkingResponse> deleteParkingSpace(@PathVariable Long id){
