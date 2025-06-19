@@ -44,6 +44,7 @@ public class ParkingServiceController {
 
     }
 
+    //get all available parkingSpace
     @GetMapping("/release")
     public ResponseEntity<List<ParkingResponse>>  getAvailableParkingSpaces(){
         return ResponseEntity.ok(parkingService.getAvailableParkingSpaces(true));
@@ -51,16 +52,21 @@ public class ParkingServiceController {
 
 
 
+    //get all  not available parkingSpace
     @GetMapping("/reserve")
     public ResponseEntity<List<ParkingResponse>>  getOccupiedParkingSpaces(){
         return ResponseEntity.ok(parkingService.getOccupiedParkingSpaces(false));
     }
+
+    //update parking availability reserve
 
     @PatchMapping("/{id}/reserve")
     public ResponseEntity<String> reserveParking(@PathVariable Long id) {
         parkingService.updateAvailability(id, false); // false = occupied
         return ResponseEntity.ok("Parking space marked as reserved.");
     }
+
+    //update parking availability
 
     @PatchMapping("/{id}/release")
     public ResponseEntity<String> releaseParking(@PathVariable Long id) {
@@ -84,6 +90,11 @@ public class ParkingServiceController {
     @GetMapping("/zoneCount/{zone}")
     public  ResponseEntity<Long> getAvailableZone(@PathVariable String zone){
         return ResponseEntity.ok(parkingService.getCountByZone(zone));
+    }
+
+    @GetMapping("/location/{location}")
+    public ResponseEntity<List<ParkingResponse>> getParkingByLocation(@PathVariable String location ){
+        return ResponseEntity.ok(parkingService.getByLocation(location));
     }
 
 

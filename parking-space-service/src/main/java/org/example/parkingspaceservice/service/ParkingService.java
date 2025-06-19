@@ -28,6 +28,8 @@ public interface ParkingService {
     Long getCountByZone(String zone);
 
     void updateAvailability(Long id, boolean b);
+
+    List<ParkingResponse> getByLocation(String location);
 }
 
 

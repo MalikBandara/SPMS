@@ -171,4 +171,13 @@ public class ParkingServiceImpl implements ParkingService {
         parking.setLastUpdated(LocalDateTime.now()); // optional
         parkingRepository.save(parking);
     }
+
+    @Override
+    public List<ParkingResponse> getByLocation(String location) {
+        if(!parkingRepository.existsByLocation(location)){
+            throw new NotFoundException("no parking spaces found in " + location);
+        }
+        List<Parking> byLocation = parkingRepository.findByLocation(location);
+        return byLocation.stream().map(parking -> modelMapper.map(parking , ParkingResponse.class)).toList();
+    }
 }
