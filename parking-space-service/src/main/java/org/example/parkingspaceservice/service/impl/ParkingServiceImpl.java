@@ -135,4 +135,14 @@ public class ParkingServiceImpl implements ParkingService {
             return byAvailable.stream().map(parking -> modelMapper.map(parking , ParkingResponse.class)).toList();
         }
     }
+
+    @Override
+    public List<ParkingResponse> getOccupiedParkingSpaces(boolean b) {
+        if(parkingRepository.findByIsAvailable(b).isEmpty()){
+            throw new NotFoundException("no occupied parking spaces found");
+        }else {
+            List<Parking> byAvailable = parkingRepository.findByIsAvailable(b);
+            return byAvailable.stream().map(parking -> modelMapper.map(parking , ParkingResponse.class)).toList();
+        }
+    }
 }
