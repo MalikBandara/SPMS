@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -68,5 +69,18 @@ public class ParkingServiceImpl implements ParkingService {
 
         }
 
+    }
+
+    @Override
+    public void deleteParkingSpace(Long id) {
+
+         parkingRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("parking space not found with id " + id));
+        parkingRepository.deleteById(id);
+//        if(parkingRepository.findById(id).isEmpty() || !parkingRepository.existsById(id)){
+//            throw  new NotFoundException("parking space not found with id " + id);
+//        }else {
+//            parkingRepository.deleteById(id);
+//        }
     }
 }

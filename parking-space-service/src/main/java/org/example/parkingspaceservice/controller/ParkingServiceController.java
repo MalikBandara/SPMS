@@ -29,10 +29,15 @@ public class ParkingServiceController {
 
     @GetMapping
     public ResponseEntity <List<ParkingResponse>> getAllParkingSpaces(){
-
-       return  ResponseEntity.ok(parkingService.getAllParkingSpaces());
+        return  ResponseEntity.ok(parkingService.getAllParkingSpaces());
     }
 
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ParkingResponse> deleteParkingSpace(@PathVariable Long id){
+        parkingService.deleteParkingSpace(id);
+        return ResponseEntity.noContent().build();
+    }
 
 
 

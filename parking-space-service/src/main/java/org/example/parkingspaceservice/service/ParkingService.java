@@ -9,6 +9,9 @@ public interface ParkingService {
     ParkingResponse createParkingSpace(ParkingRequest parkingRequest);
 
     List<ParkingResponse> getAllParkingSpaces();
+
+    void deleteParkingSpace(Long id);
+
 }
 
 
