@@ -102,7 +102,7 @@ public class ParkingServiceImpl implements ParkingService {
         }
 
         Parking parking = parkingRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Parking space not found wit id " + id));
+                .orElseThrow(() -> new NotFoundException("Parking space not found with id " + id));
 
                 parking.setLocation(parkingRequest.getLocation());
                 parking.setZone(parkingRequest.getZone());
@@ -174,7 +174,7 @@ public class ParkingServiceImpl implements ParkingService {
 
     @Override
     public List<ParkingResponse> getByLocation(String location) {
-        if(!parkingRepository.existsByLocation(location)){
+        if(parkingRepository.findByLocation(location).isEmpty()){
             throw new NotFoundException("no parking spaces found in " + location);
         }
         List<Parking> byLocation = parkingRepository.findByLocation(location);
