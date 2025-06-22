@@ -11,9 +11,10 @@ import lombok.Setter;
 @Setter
 public class PaymentRequest {
 
-    private String userId;
+    private Long userId;
     private String parkingSpaceId;
     private double amount;
+    private String status;
     private String cardNumber;
     private String expiry;
     private String cvv;

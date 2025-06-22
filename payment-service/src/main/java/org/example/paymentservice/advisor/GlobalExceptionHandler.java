@@ -2,8 +2,7 @@ package org.example.paymentservice.advisor;
 
 
 import jakarta.validation.ConstraintViolationException;
-import org.example.userservice.advisor.ConflictException;
-import org.example.userservice.advisor.NotFoundException;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
