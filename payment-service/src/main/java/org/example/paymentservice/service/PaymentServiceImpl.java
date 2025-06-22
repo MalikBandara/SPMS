@@ -57,9 +57,10 @@ public class PaymentServiceImpl implements PaymentService{
         boolean isValidCard = paymentRequest.getCardNumber() != null && paymentRequest.getCardNumber().startsWith("4");
         String status = isValidCard ? "SUCCESS" : "FAILED";
 
+        String paymentId = "PAY-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
 
         Payment payment = Payment.builder()
-                .paymentId(UUID.randomUUID().toString())
+                .paymentId(paymentId)
                 .userId(paymentRequest.getUserId())
                 .parkingSpaceId(paymentRequest.getParkingSpaceId())
                 .amount(paymentRequest.getAmount())
@@ -73,5 +74,12 @@ public class PaymentServiceImpl implements PaymentService{
                 isValidCard ? "Payment processed successfully" : "Payment failed",
                 "/api/v1/payment/receipt/" + payment.getPaymentId()
         );
+    }
+
+    @Override
+    public Payment getPaymentById(String id) {
+        return   paymentRepository.findById(id)
+                 .orElseThrow(()-> new NotFoundException("payment with id " + id + "does not exist"));
+
     }
 }
