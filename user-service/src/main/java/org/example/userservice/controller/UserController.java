@@ -6,6 +6,7 @@ import org.example.userservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,9 +19,13 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
 
     @PostMapping
     public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest newUser){
+        newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(newUser));
     }
 
@@ -48,6 +53,12 @@ public class UserController {
     public ResponseEntity<UserResponse> updateUser(@PathVariable Long id , @RequestBody UserRequest userRequest){
         UserResponse userResponse = userService.updateUser(id, userRequest);
         return ResponseEntity.status(HttpStatus.OK).body(userResponse);
+    }
+
+    @GetMapping("email/{email}")
+    public ResponseEntity<UserResponse> getUserByEmail(@PathVariable String email) {
+
+        return ResponseEntity.status(HttpStatus.OK).body(userService.getUserByEmail(email));
     }
 
 
