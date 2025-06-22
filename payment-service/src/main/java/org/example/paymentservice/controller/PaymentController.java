@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/v1/payment")
 
@@ -29,5 +31,12 @@ public class PaymentController {
         return ResponseEntity.ok( paymentService.getPaymentById(id));
 
     }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Payment>> getPaymentsByUser(@PathVariable Long userId) {
+        List<Payment> payments = paymentService.getPaymentsByUserId(userId);
+        return ResponseEntity.ok(payments);
+    }
+
 
 }

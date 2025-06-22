@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -80,6 +81,16 @@ public class PaymentServiceImpl implements PaymentService{
     public Payment getPaymentById(String id) {
         return   paymentRepository.findById(id)
                  .orElseThrow(()-> new NotFoundException("payment with id " + id + "does not exist"));
+
+    }
+
+    @Override
+    public List<Payment> getPaymentsByUserId(Long userId) {
+        if(paymentRepository.getPaymentByUserId(userId).isEmpty()){
+            throw new NotFoundException("payment with user id " + userId + "does not exist");
+        }else {
+            return paymentRepository.getPaymentByUserId(userId);
+        }
 
     }
 }
