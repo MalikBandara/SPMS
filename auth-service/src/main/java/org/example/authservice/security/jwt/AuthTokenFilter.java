@@ -54,9 +54,15 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
         }
     }catch (Exception e ){
-        System.out.println("Token is INVALID: " + e.getMessage());
-
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write("{\"error\": \"Invalid authorization header or check the Postman method.\"}");
+        response.getWriter().flush();  // Ensures response is sent
+        return;
     }
+
     filterChain.doFilter(request , response);
+
     }
 }

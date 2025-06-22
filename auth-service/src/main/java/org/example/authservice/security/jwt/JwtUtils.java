@@ -5,6 +5,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import jakarta.ws.rs.NotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.Authentication;
@@ -47,8 +48,8 @@ public class JwtUtils {
                 return true;
 
             }catch (Exception e ){
-                e.printStackTrace();
-                return false;
+                throw  new NotFoundException("Invalid authorization header or Check the postman method");
+
             }
     }
 

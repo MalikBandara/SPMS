@@ -46,20 +46,4 @@ public class AuthController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }
     }
-
-
-    @GetMapping("/validate")
-    public ResponseEntity<String> validateToken(@RequestHeader("Authorization") String authHeader) {
-        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Missing or Invalid Authorization Header");
-        }
-
-        String token = authHeader.substring(7);
-
-        if (jwtUtils.validateJwtToken(token)) {
-            return ResponseEntity.ok("Token is valid");
-        } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token");
-        }
-    }
 }

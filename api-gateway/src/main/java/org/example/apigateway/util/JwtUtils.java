@@ -5,6 +5,7 @@ package org.example.apigateway.util;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import jakarta.ws.rs.NotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
@@ -32,7 +33,7 @@ public class JwtUtils {
                 return true;
 
             }catch (Exception e ){
-                return false;
+                throw  new NotFoundException("Invalid authorization header or Check the postman method");
             }
     }
 
