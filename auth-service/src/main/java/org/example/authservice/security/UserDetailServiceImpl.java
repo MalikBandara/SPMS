@@ -19,8 +19,8 @@ public class UserDetailServiceImpl implements UserDetailsService {
 //    http://localhost:8080/auth/login
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserResponse userByEmail = userClient.getUserByEmail(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        UserResponse userByEmail = userClient.getUserByEmail(email);
 
         if (userByEmail==null){
             throw new UsernameNotFoundException("user is not found ");

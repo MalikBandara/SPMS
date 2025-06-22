@@ -54,7 +54,8 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
         }
     }catch (Exception e ){
-        e.printStackTrace();
+        System.out.println("Token is INVALID: " + e.getMessage());
+
     }
     filterChain.doFilter(request , response);
     }

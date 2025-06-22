@@ -15,26 +15,38 @@ spring:
           uri: lb://vehicle-service
           predicates:
             - Path=/api/v1/vehicle/**
+          -filters:
+            - AuthenticationFilter
 
         - id: parking-service
           uri: lb://parking-service
           predicates:
             - Path=/api/v1/parking/**
+          -filters:
+            - AuthenticationFilter
+
 
         - id: payment-service
           uri: lb://payment-service
           predicates:
             - Path=/api/v1/payment/**
+          -filters:
+            - AuthenticationFilter
+
 
         - id: user-service
           uri: lb://user-service
           predicates:
             - Path=/api/v1/user/**
+          -filters:
+            - AuthenticationFilter
+
 
         - id: auth-service
           uri: lb://auth-service
           predicates:
             - Path=/auth/**
+
 
 
 

@@ -13,8 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
-@CrossOrigin(origins = "*")
+@RequestMapping("/auth")
 public class AuthController {
 
     @Autowired
@@ -24,7 +23,7 @@ public class AuthController {
     private JwtUtils jwtUtils;
 
     // When user logs in, generate a JWT token
-    @PostMapping("/auth/login")
+    @PostMapping("/login")
     public ResponseEntity<LoginResponseDto> userLogin(@RequestBody LoginDto loginDto) {
         try {
             // Authenticate the user
@@ -45,6 +44,22 @@ public class AuthController {
             // In case of an error, send a bad request response
             LoginResponseDto errorResponse = new LoginResponseDto(null, "Invalid credentials");
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        }
+    }
+
+
+    @GetMapping("/validate")
+    public ResponseEntity<String> validateToken(@RequestHeader("Authorization") String authHeader) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Missing or Invalid Authorization Header");
+        }
+
+        String token = authHeader.substring(7);
+
+        if (jwtUtils.validateJwtToken(token)) {
+            return ResponseEntity.ok("Token is valid");
+        } else {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid token");
         }
     }
 }

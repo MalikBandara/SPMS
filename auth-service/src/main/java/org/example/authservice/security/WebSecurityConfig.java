@@ -74,9 +74,6 @@ public class WebSecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)) // Session management
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers("/auth/**").permitAll()
-                                .requestMatchers("/api/admin/**").hasRole("ADMIN") // Admin-only routes
-                                .requestMatchers("/api/user/**").hasAnyRole("USER", "ADMIN")// Both User and Admin
-                                .requestMatchers("/api/v1/payment/**").authenticated()
                                 .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider()) // Set the authentication provider
@@ -85,8 +82,7 @@ public class WebSecurityConfig {
                 // CORS Configuration
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration config = new CorsConfiguration();
-                    config.setAllowedOrigins(List.of("http://localhost:63342"));
-                    config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
+                    config.setAllowedMethods(List.of("GET", "POST", "PUT" , "PATCH" ,  "DELETE"));
                     config.setAllowCredentials(true);
                     config.setAllowedHeaders(List.of("*"));
                     return config;
