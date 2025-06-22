@@ -1,7 +1,7 @@
 package org.example.authservice.security;
 
 
-import org.apache.catalina.filters.ExpiresFilter;
+
 
 import org.example.authservice.security.jwt.AuthEntryPoint;
 import org.example.authservice.security.jwt.AuthTokenFilter;
@@ -32,40 +32,40 @@ public class WebSecurityConfig {
 
 
 
-        @Autowired
-        private UserDetailServiceImpl userDetailService;
+    @Autowired
+    private UserDetailServiceImpl userDetailService;
 
-        @Autowired
-        private AuthEntryPoint unauthorizedHandler;
+    @Autowired
+    private AuthEntryPoint unauthorizedHandler;
 
-        @Bean
-        public UserDetailsService userDetailsService(){
-            return new UserDetailServiceImpl();
-        }
+    @Bean
+    public UserDetailsService userDetailsService(){
+        return new UserDetailServiceImpl();
+    }
 
-        @Bean
-        public AuthTokenFilter authTokenFilter(){
-            return new AuthTokenFilter();
-        }
+    @Bean
+    public AuthTokenFilter authTokenFilter(){
+        return new AuthTokenFilter();
+    }
 
-        @Bean
-        public PasswordEncoder passwordEncoder(){
+    @Bean
+    public PasswordEncoder passwordEncoder(){
 
-            return  new BCryptPasswordEncoder();
-        }
+        return  new BCryptPasswordEncoder();
+    }
 
-        @Bean
-        public DaoAuthenticationProvider authenticationProvider(){
-            DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-            provider.setUserDetailsService(userDetailService);
-            provider.setPasswordEncoder(passwordEncoder());
-            return provider;
-        }
-        @Bean
-        public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig ) throws  Exception{
-            return authConfig.getAuthenticationManager();
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider(){
+        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+        provider.setUserDetailsService(userDetailService);
+        provider.setPasswordEncoder(passwordEncoder());
+        return provider;
+    }
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig ) throws  Exception{
+        return authConfig.getAuthenticationManager();
 
-        }
+    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -77,19 +77,11 @@ public class WebSecurityConfig {
                                 .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider()) // Set the authentication provider
-                .addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class) // Add custom filter
-
-                // CORS Configuration
-                .cors(cors -> cors.configurationSource(request -> {
-                    CorsConfiguration config = new CorsConfiguration();
-                    config.setAllowedMethods(List.of("GET", "POST", "PUT" , "PATCH" ,  "DELETE"));
-                    config.setAllowCredentials(true);
-                    config.setAllowedHeaders(List.of("*"));
-                    return config;
-                }));
+                .addFilterBefore(authTokenFilter(), UsernamePasswordAuthenticationFilter.class); // Add custom filter
 
         return http.build();
     }
+
 
 
 
