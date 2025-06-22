@@ -10,8 +10,5 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class PaymentController {
 
-    @GetMapping("payment")
-    public String getPayment() {
-        return "payment";
-    }
+
 }
