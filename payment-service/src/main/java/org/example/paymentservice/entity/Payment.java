@@ -17,7 +17,7 @@ public class Payment {
     @Id
     private String paymentId;
     private Long userId;
-    private String parkingSpaceId;
+    private Long parkingSpaceId;
     private double amount;
     private LocalDateTime timestamp;
 }

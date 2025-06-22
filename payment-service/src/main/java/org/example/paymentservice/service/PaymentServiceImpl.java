@@ -5,6 +5,7 @@ import org.example.paymentservice.advisor.NotFoundException;
 import org.example.paymentservice.dto.PaymentRequest;
 import org.example.paymentservice.dto.PaymentResponse;
 import org.example.paymentservice.entity.Payment;
+import org.example.paymentservice.feign.ParkingFree;
 import org.example.paymentservice.feign.UserClient;
 import org.example.paymentservice.repo.PaymentRepository;
 import org.modelmapper.ModelMapper;
@@ -23,6 +24,9 @@ public class PaymentServiceImpl implements PaymentService{
     private ModelMapper modelMapper;
 
     @Autowired
+    private ParkingFree parkingFree;
+
+    @Autowired
     private UserClient userClient;
 
     @Override
@@ -31,9 +35,20 @@ public class PaymentServiceImpl implements PaymentService{
 
         try {
             userClient.getUserById(paymentRequest.getUserId()); // just validate
+
         } catch (FeignException.NotFound e) {
             throw new NotFoundException("User not found with id " + paymentRequest.getUserId());
         }
+
+        try {
+            parkingFree.getParkingSpaceById(paymentRequest.getParkingSpaceId());
+        } catch (FeignException.NotFound e) {
+            throw new NotFoundException("Parking space not found with ID: " + paymentRequest.getParkingSpaceId());
+        }
+
+
+
+
 
         if(paymentRequest.getUserId() == null){
             throw new NotFoundException("User id not found " + paymentRequest.getUserId());
