@@ -60,11 +60,18 @@ public class PaymentServiceImpl implements PaymentService{
 
         String paymentId = "PAY-" + UUID.randomUUID().toString().substring(0, 8).toUpperCase();
 
+        // Calculate duration in hours
+        long minutes = java.time.Duration.between(paymentRequest.getEntryTime(), paymentRequest.getExitTime()).toMinutes();
+        double ratePerHour = 50.0;
+        double hours = Math.ceil(minutes / 60.0); // round up to next hour
+        double totalAmount = hours * ratePerHour;
+
+
         Payment payment = Payment.builder()
                 .paymentId(paymentId)
                 .userId(paymentRequest.getUserId())
                 .parkingSpaceId(paymentRequest.getParkingSpaceId())
-                .amount(paymentRequest.getAmount())
+                .amount(totalAmount)
                 .timestamp(LocalDateTime.now())
                 .build();
 
@@ -92,5 +99,16 @@ public class PaymentServiceImpl implements PaymentService{
             return paymentRepository.getPaymentByUserId(userId);
         }
 
+    }
+
+    @Override
+    public List<Payment> getAllPayment() {
+        if(paymentRepository.findAll().isEmpty()){
+            throw new NotFoundException("No Payment found");
+        }else {
+            List<Payment> all = paymentRepository.findAll();
+            return all;
+
+        }
     }
 }

@@ -1,6 +1,7 @@
 package org.example.parkingspaceservice.controller;
 
 
+import jakarta.validation.Valid;
 import org.example.parkingspaceservice.dto.ParkingRequest;
 import org.example.parkingspaceservice.dto.ParkingResponse;
 import org.example.parkingspaceservice.service.ParkingService;
@@ -21,7 +22,7 @@ public class ParkingServiceController {
     private ParkingService parkingService;
 
     @PostMapping
-    public ResponseEntity<ParkingResponse> createParkingSpace(@RequestBody ParkingRequest parkingRequest){
+    public ResponseEntity<ParkingResponse> createParkingSpace(@Valid @RequestBody ParkingRequest parkingRequest){
         ParkingResponse parkingSpace = parkingService.createParkingSpace(parkingRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(parkingSpace);
     }

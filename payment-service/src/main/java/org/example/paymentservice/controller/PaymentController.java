@@ -1,6 +1,7 @@
 package org.example.paymentservice.controller;
 
 
+import jakarta.validation.Valid;
 import org.example.paymentservice.dto.PaymentRequest;
 import org.example.paymentservice.dto.PaymentResponse;
 import org.example.paymentservice.entity.Payment;
@@ -21,7 +22,7 @@ public class PaymentController {
     private PaymentService paymentService;
 
     @PostMapping
-    public ResponseEntity<PaymentResponse> createPayment(@RequestBody PaymentRequest paymentRequest){
+    public ResponseEntity<PaymentResponse> createPayment(@Valid @RequestBody PaymentRequest paymentRequest){
         PaymentResponse payment = paymentService.createPayment(paymentRequest);
         return ResponseEntity.status(201).body(payment);
     }
@@ -29,6 +30,12 @@ public class PaymentController {
     @GetMapping("/receipt/{id}")
     public ResponseEntity<Payment> getReceipt(@PathVariable String id) {
         return ResponseEntity.ok( paymentService.getPaymentById(id));
+
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Payment>> getAllPayment() {
+        return ResponseEntity.ok(paymentService.getAllPayment());
 
     }
 

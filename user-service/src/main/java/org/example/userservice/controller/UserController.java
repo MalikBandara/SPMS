@@ -1,5 +1,6 @@
 package org.example.userservice.controller;
 
+import jakarta.validation.Valid;
 import org.example.userservice.dto.UserRequest;
 import org.example.userservice.dto.UserResponse;
 import org.example.userservice.service.UserService;
@@ -24,7 +25,7 @@ public class UserController {
 
 
     @PostMapping
-    public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest newUser){
+    public ResponseEntity<UserResponse> createUser(@Valid @RequestBody UserRequest newUser){
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
         return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(newUser));
     }

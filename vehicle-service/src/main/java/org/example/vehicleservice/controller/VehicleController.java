@@ -26,7 +26,7 @@ public class VehicleController {
 
 
     @PostMapping
-    public ResponseEntity<VehicleResponse> registerNewVehicle(@RequestBody @Valid VehicleRequest NewVehicle){
+    public ResponseEntity<VehicleResponse> registerNewVehicle( @RequestBody @Valid VehicleRequest NewVehicle){
         return ResponseEntity.status(HttpStatus.CREATED).body(vehicleService.registerNewVehicle(NewVehicle));
     }
 

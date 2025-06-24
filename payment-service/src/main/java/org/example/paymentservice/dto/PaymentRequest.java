@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -18,4 +20,6 @@ public class PaymentRequest {
     private String cardNumber;
     private String expiry;
     private String cvv;
+    private LocalDateTime entryTime;
+    private LocalDateTime exitTime;
 }
