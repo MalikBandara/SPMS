@@ -52,6 +52,7 @@ public class UserController {
 
     @PutMapping("/{id}")
     public ResponseEntity<UserResponse> updateUser(@PathVariable Long id , @RequestBody UserRequest userRequest){
+        userRequest.setPassword(passwordEncoder.encode(userRequest.getPassword()));
         UserResponse userResponse = userService.updateUser(id, userRequest);
         return ResponseEntity.status(HttpStatus.OK).body(userResponse);
     }
