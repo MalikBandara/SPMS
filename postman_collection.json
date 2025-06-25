@@ -1,0 +1,1062 @@
+{
+	"info": {
+		"_postman_id": "c645f81f-b3cb-4bd0-804a-7e9bafa4b869",
+		"name": "SPMS API Collection",
+		"description": "Postman collection for testing Smart Parking Management System microservices",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40383134"
+	},
+	"item": [
+		{
+			"name": "user-service",
+			"item": [
+				{
+					"name": "create-user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lU21pdGhAZXhhbXBsZS5jb20iLCJpYXQiOjE3NTA3NzQwOTksImV4cCI6MTc1MDg2MDQ5OX0.lzF_y_fg46ogmICJRCsftIPr3cFRhpizR_Yet3cqyEM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Malik bandara\",\r\n  \"email\": \"Sandunil2@gmail.com\",\r\n  \"phone\": \"0771899231\",\r\n  \"password\": \"123\",\r\n  \"role\": \"USER\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-user-by-id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lU21pdGhAZXhhbXBsZS5jb20iLCJpYXQiOjE3NTA3NzQwOTksImV4cCI6MTc1MDg2MDQ5OX0.lzF_y_fg46ogmICJRCsftIPr3cFRhpizR_Yet3cqyEM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/api/v1/user/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lU21pdGhAZXhhbXBsZS5jb20iLCJpYXQiOjE3NTA3NzQwOTksImV4cCI6MTc1MDg2MDQ5OX0.lzF_y_fg46ogmICJRCsftIPr3cFRhpizR_Yet3cqyEM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/api/v1/user",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-user-by-email",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \r\n        \"name\": \"Sandunil Malik bandara\",\r\n        \"email\": \"Sandunil4@gmail.com\",\r\n        \"password\": \"321\",\r\n        \"phone\": \"0771899231\",\r\n        \"role\": \"USER\"\r\n    }"
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/user/email/{{email}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"email",
+								"{{email}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-user-by-id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lU21pdGhAZXhhbXBsZS5jb20iLCJpYXQiOjE3NTA3NzQwOTksImV4cCI6MTc1MDg2MDQ5OX0.lzF_y_fg46ogmICJRCsftIPr3cFRhpizR_Yet3cqyEM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/api/v1/user/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-user-by-id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lU21pdGhAZXhhbXBsZS5jb20iLCJpYXQiOjE3NTA3NzQwOTksImV4cCI6MTc1MDg2MDQ5OX0.lzF_y_fg46ogmICJRCsftIPr3cFRhpizR_Yet3cqyEM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \r\n        \"name\": \"Sandunil Malik bandara\",\r\n        \"email\": \"Sandunil4@gmail.com\",\r\n        \"password\": \"321\",\r\n        \"phone\": \"0771899231\",\r\n        \"role\": \"USER\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8084/api/v1/user/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "vehicle-service",
+			"item": [
+				{
+					"name": "register-new-vehicle",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lU21pdGhAZXhhbXBsZS5jb20iLCJpYXQiOjE3NTA3NzQwOTksImV4cCI6MTc1MDg2MDQ5OX0.lzF_y_fg46ogmICJRCsftIPr3cFRhpizR_Yet3cqyEM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numberPlate\": \"ABC-1234\",\r\n  \"model\": \"Toyota Prius\",\r\n  \"color\": \"White\",\r\n  \"userId\": 9,\r\n  \"checkInTime\": \"2025-06-24T08:30:00\",\r\n  \"checkOutTime\": \"2025-06-24T18:00:00\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/vehicle",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"vehicle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-vehicle-by-number-plate",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lU21pdGhAZXhhbXBsZS5jb20iLCJpYXQiOjE3NTA3NzQwOTksImV4cCI6MTc1MDg2MDQ5OX0.lzF_y_fg46ogmICJRCsftIPr3cFRhpizR_Yet3cqyEM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numberPlate\": \"ABC-1234\",\r\n  \"model\": \"Toyota Prius\",\r\n  \"color\": \"White\",\r\n  \"userId\": 9,\r\n  \"checkInTime\": \"2025-06-24T08:30:00\",\r\n  \"checkOutTime\": \"2025-06-24T18:00:00\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/vehicle/{{numberPlate}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"vehicle",
+								"{{numberPlate}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-vehicles",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lU21pdGhAZXhhbXBsZS5jb20iLCJpYXQiOjE3NTA3NzQwOTksImV4cCI6MTc1MDg2MDQ5OX0.lzF_y_fg46ogmICJRCsftIPr3cFRhpizR_Yet3cqyEM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numberPlate\": \"ABC-1234\",\r\n  \"model\": \"Toyota Prius\",\r\n  \"color\": \"White\",\r\n  \"userId\": 9,\r\n  \"checkInTime\": \"2025-06-24T08:30:00\",\r\n  \"checkOutTime\": \"2025-06-24T18:00:00\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/vehicle",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"vehicle"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-vehicle-by-id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lU21pdGhAZXhhbXBsZS5jb20iLCJpYXQiOjE3NTA3NzQwOTksImV4cCI6MTc1MDg2MDQ5OX0.lzF_y_fg46ogmICJRCsftIPr3cFRhpizR_Yet3cqyEM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numberPlate\": \"ABC-1234\",\r\n  \"model\": \"Toyota Prius\",\r\n  \"color\": \"White\",\r\n  \"userId\": 9,\r\n  \"checkInTime\": \"2025-06-24T08:30:00\",\r\n  \"checkOutTime\": \"2025-06-24T18:00:00\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/vehicle/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"vehicle",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-vehicle-by-number-plate",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTYW5kdW5pbDRAZ21haWwuY29tIiwiaWF0IjoxNzUwODIzMjM4LCJleHAiOjE3NTA5MDk2Mzh9.OD6oSY071V1jEQzcKz1rhoEljt0sDyjSTHO4wBVMTn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numberPlate\": \"ABC-1239\",\r\n  \"model\": \"Toyota malik\",\r\n  \"color\": \"White\",\r\n  \"userId\": 9,\r\n  \"checkInTime\": \"2025-06-24T08:30:00\",\r\n  \"checkOutTime\": \"2025-06-24T18:00:00\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/v1/vehicle/{{numberPlate}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"v1",
+								"vehicle",
+								"{{numberPlate}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "parking-space-service",
+			"item": [
+				{
+					"name": "create-parking-space",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTYW5kdW5pbDRAZ21haWwuY29tIiwiaWF0IjoxNzUwODIzMjM4LCJleHAiOjE3NTA5MDk2Mzh9.OD6oSY071V1jEQzcKz1rhoEljt0sDyjSTHO4wBVMTn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"location\": \"Colombo - Zone A\",\r\n  \"zone\": \"A1\",\r\n  \"type\": \"Car\",\r\n  \"isAvailable\": true,\r\n  \"numberPlate\": \"CBA-4567\",\r\n  \"ownerId\": 5,\r\n  \"description\": \"Covered parking near main entrance, suitable for cars only.\",\r\n  \"lastUpdated\": \"2025-06-25T09:30:00\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/parking",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"parking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-parking-spaces",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTYW5kdW5pbDRAZ21haWwuY29tIiwiaWF0IjoxNzUwODIzMjM4LCJleHAiOjE3NTA5MDk2Mzh9.OD6oSY071V1jEQzcKz1rhoEljt0sDyjSTHO4wBVMTn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"location\": \"Colombo - Zone A\",\r\n  \"zone\": \"A1\",\r\n  \"type\": \"Car\",\r\n  \"isAvailable\": true,\r\n  \"numberPlate\": \"CBA-4567\",\r\n  \"ownerId\": 5,\r\n  \"description\": \"Covered parking near main entrance, suitable for cars only.\",\r\n  \"lastUpdated\": \"2025-06-25T09:30:00\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/parking",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"parking"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-parking-space-by-id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTYW5kdW5pbDRAZ21haWwuY29tIiwiaWF0IjoxNzUwODIzMjM4LCJleHAiOjE3NTA5MDk2Mzh9.OD6oSY071V1jEQzcKz1rhoEljt0sDyjSTHO4wBVMTn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"location\": \"Colombo - Zone A\",\r\n  \"zone\": \"A1\",\r\n  \"type\": \"Car\",\r\n  \"isAvailable\": true,\r\n  \"numberPlate\": \"CBA-4567\",\r\n  \"ownerId\": 5,\r\n  \"description\": \"Covered parking near main entrance, suitable for cars only.\",\r\n  \"lastUpdated\": \"2025-06-25T09:30:00\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/parking/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"parking",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-parking-zone-by-zone",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTYW5kdW5pbDRAZ21haWwuY29tIiwiaWF0IjoxNzUwODIzMjM4LCJleHAiOjE3NTA5MDk2Mzh9.OD6oSY071V1jEQzcKz1rhoEljt0sDyjSTHO4wBVMTn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"location\": \"Colombo - Zone A\",\r\n  \"zone\": \"A1\",\r\n  \"type\": \"Car\",\r\n  \"isAvailable\": true,\r\n  \"numberPlate\": \"CBA-4567\",\r\n  \"ownerId\": 5,\r\n  \"description\": \"Covered parking near main entrance, suitable for cars only.\",\r\n  \"lastUpdated\": \"2025-06-25T09:30:00\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/parking/zone/{{zone}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"parking",
+								"zone",
+								"{{zone}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-available-parking-space",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTYW5kdW5pbDRAZ21haWwuY29tIiwiaWF0IjoxNzUwODIzMjM4LCJleHAiOjE3NTA5MDk2Mzh9.OD6oSY071V1jEQzcKz1rhoEljt0sDyjSTHO4wBVMTn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"location\": \"Colombo - Zone A\",\r\n  \"zone\": \"A1\",\r\n  \"type\": \"Car\",\r\n  \"isAvailable\": true,\r\n  \"numberPlate\": \"CBA-4567\",\r\n  \"ownerId\": 5,\r\n  \"description\": \"Covered parking near main entrance, suitable for cars only.\",\r\n  \"lastUpdated\": \"2025-06-25T09:30:00\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/parking/release",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"parking",
+								"release"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-reserved-parking-space",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTYW5kdW5pbDRAZ21haWwuY29tIiwiaWF0IjoxNzUwODIzMjM4LCJleHAiOjE3NTA5MDk2Mzh9.OD6oSY071V1jEQzcKz1rhoEljt0sDyjSTHO4wBVMTn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"location\": \"Colombo - Zone A\",\r\n  \"zone\": \"A1\",\r\n  \"type\": \"Car\",\r\n  \"isAvailable\": true,\r\n  \"numberPlate\": \"CBA-4567\",\r\n  \"ownerId\": 5,\r\n  \"description\": \"Covered parking near main entrance, suitable for cars only.\",\r\n  \"lastUpdated\": \"2025-06-25T09:30:00\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/parking/reserve",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"parking",
+								"reserve"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-parking-space-reserved",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTYW5kdW5pbDRAZ21haWwuY29tIiwiaWF0IjoxNzUwODIzMjM4LCJleHAiOjE3NTA5MDk2Mzh9.OD6oSY071V1jEQzcKz1rhoEljt0sDyjSTHO4wBVMTn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/parking/{{id}}/reserve",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"parking",
+								"{{id}}",
+								"reserve"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-parking-space-release",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTYW5kdW5pbDRAZ21haWwuY29tIiwiaWF0IjoxNzUwODIzMjM4LCJleHAiOjE3NTA5MDk2Mzh9.OD6oSY071V1jEQzcKz1rhoEljt0sDyjSTHO4wBVMTn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/v1/parking/{{id}}/release",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"parking",
+								"{{id}}",
+								"release"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-parking-space-by-id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTYW5kdW5pbDRAZ21haWwuY29tIiwiaWF0IjoxNzUwODIzMjM4LCJleHAiOjE3NTA5MDk2Mzh9.OD6oSY071V1jEQzcKz1rhoEljt0sDyjSTHO4wBVMTn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"location\": \"Colombo - Zone A\",\r\n  \"zone\": \"A1\",\r\n  \"type\": \"Car\",\r\n  \"isAvailable\": true,\r\n  \"numberPlate\": \"CBA-4567\",\r\n  \"ownerId\": 5,\r\n  \"description\": \"Covered parking near main entrance, suitable for cars only.\",\r\n  \"lastUpdated\": \"2025-06-25T09:30:00\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/parking/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"parking",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-parking-space-by-id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTYW5kdW5pbDRAZ21haWwuY29tIiwiaWF0IjoxNzUwODIzMjM4LCJleHAiOjE3NTA5MDk2Mzh9.OD6oSY071V1jEQzcKz1rhoEljt0sDyjSTHO4wBVMTn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"location\": \"Colombo - Zone A\",\r\n  \"zone\": \"A1\",\r\n  \"type\": \"Car\",\r\n  \"isAvailable\": true,\r\n  \"numberPlate\": \"CBA-4567\",\r\n  \"ownerId\": 5,\r\n  \"description\": \"Covered parking near main entrance, suitable for cars only.\",\r\n  \"lastUpdated\": \"2025-06-25T09:30:00\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/parking/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"parking",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-zone-count-by-zone-name",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTYW5kdW5pbDRAZ21haWwuY29tIiwiaWF0IjoxNzUwODIzMjM4LCJleHAiOjE3NTA5MDk2Mzh9.OD6oSY071V1jEQzcKz1rhoEljt0sDyjSTHO4wBVMTn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"location\": \"Colombo - Zone A\",\r\n  \"zone\": \"A1\",\r\n  \"type\": \"Car\",\r\n  \"isAvailable\": true,\r\n  \"numberPlate\": \"CBA-4567\",\r\n  \"ownerId\": 5,\r\n  \"description\": \"Covered parking near main entrance, suitable for cars only.\",\r\n  \"lastUpdated\": \"2025-06-25T09:30:00\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/parking/zoneCount/{{zoneName}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"parking",
+								"zoneCount",
+								"{{zoneName}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-parking-space-by-location",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTYW5kdW5pbDRAZ21haWwuY29tIiwiaWF0IjoxNzUwODIzMjM4LCJleHAiOjE3NTA5MDk2Mzh9.OD6oSY071V1jEQzcKz1rhoEljt0sDyjSTHO4wBVMTn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"location\": \"Colombo - Zone A\",\r\n  \"zone\": \"A1\",\r\n  \"type\": \"Car\",\r\n  \"isAvailable\": true,\r\n  \"numberPlate\": \"CBA-4567\",\r\n  \"ownerId\": 5,\r\n  \"description\": \"Covered parking near main entrance, suitable for cars only.\",\r\n  \"lastUpdated\": \"2025-06-25T09:30:00\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/v1/parking/location/{{location}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"v1",
+								"parking",
+								"location",
+								"{{location}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "payment-service",
+			"item": [
+				{
+					"name": "create-payment-for-user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTYW5kdW5pbDRAZ21haWwuY29tIiwiaWF0IjoxNzUwODIzMjM4LCJleHAiOjE3NTA5MDk2Mzh9.OD6oSY071V1jEQzcKz1rhoEljt0sDyjSTHO4wBVMTn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": 4,\r\n  \"parkingSpaceId\": 14,\r\n  \"amount\": 350.00,\r\n  \"status\": \"PAID\",\r\n  \"cardNumber\": \"4111111111111111\",\r\n  \"expiry\": \"12/26\",\r\n  \"cvv\": \"123\",\r\n  \"entryTime\": \"2025-06-25T08:30:00\",\r\n  \"exitTime\": \"2025-06-25T10:45:00\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/v1/payment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"v1",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-payment-receipt-by-id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTYW5kdW5pbDRAZ21haWwuY29tIiwiaWF0IjoxNzUwODIzMjM4LCJleHAiOjE3NTA5MDk2Mzh9.OD6oSY071V1jEQzcKz1rhoEljt0sDyjSTHO4wBVMTn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"userId\": 4,\r\n  \"parkingSpaceId\": 14,\r\n  \"amount\": 350.00,\r\n  \"status\": \"PAID\",\r\n  \"cardNumber\": \"4111111111111111\",\r\n  \"expiry\": \"12/26\",\r\n  \"cvv\": \"123\",\r\n  \"entryTime\": \"2025-06-25T08:30:00\",\r\n  \"exitTime\": \"2025-06-25T10:45:00\"\r\n}\r\n"
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/v1/payment/receipt/{{paymentId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"v1",
+								"payment",
+								"receipt",
+								"{{paymentId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-all-payment",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/api/v1/payment",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"v1",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-payment-by-user-id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/api/v1/payment/user/{{userId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"v1",
+								"payment",
+								"user",
+								"{{userId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth-service",
+			"item": [
+				{
+					"name": "auth-login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJTYW5kdW5pbDRAZ21haWwuY29tIiwiaWF0IjoxNzUwODIzMjM4LCJleHAiOjE3NTA5MDk2Mzh9.OD6oSY071V1jEQzcKz1rhoEljt0sDyjSTHO4wBVMTn8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\":\"Sandunil4@gmail.com\",\r\n    \"password\":\"321\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
