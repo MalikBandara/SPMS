@@ -168,6 +168,8 @@ public class ParkingServiceImpl implements ParkingService {
                 .orElseThrow(() -> new NotFoundException("Parking space not found with id " + id));
 
         parking.setAvailable(b);
+        parking.setOwnerId(null);
+        parking.setNumberPlate("");
         parking.setLastUpdated(LocalDateTime.now()); // optional
         parkingRepository.save(parking);
     }

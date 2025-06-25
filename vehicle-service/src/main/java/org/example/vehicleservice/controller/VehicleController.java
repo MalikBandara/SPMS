@@ -47,7 +47,7 @@ public class VehicleController {
     }
 
     @PutMapping("/{numberPlate}")
-    public ResponseEntity<VehicleResponse> updateVehicleById(@PathVariable String numberPlate , @RequestBody VehicleRequest vehicleRequest){
+    public ResponseEntity<VehicleResponse> updateVehicleByNumberPlate(@PathVariable String numberPlate , @RequestBody VehicleRequest vehicleRequest){
         return ResponseEntity.ok( vehicleService.updateVehicleById(numberPlate, vehicleRequest));
     }
 }
