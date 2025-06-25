@@ -20,6 +20,8 @@ Use Postman to test all APIs. Auth token is required for protected routes.
 
 ## 📦 Resources
 - [Postman Collection](./postman_collection.json)
+
+## 📊 Screenshots
 - ![Eureka Dashboard](./docs/screenshots/eureka_dashboard.png)
 
 ## 🚀 How to Run
