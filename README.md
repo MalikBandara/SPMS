@@ -27,7 +27,8 @@ Use Postman to test all APIs. Auth token is required for protected routes.
 2. Start **Config Server** (`localhost:8888`)
 3. Start each microservice
 4. Start **API Gateway** (`localhost:8080`)
-5. Use Postman to send requests
+5. use auth-service to login
+6. use Postman to test APIs
 
 ## 📝 Author
 Sandunil Malik Bandara
