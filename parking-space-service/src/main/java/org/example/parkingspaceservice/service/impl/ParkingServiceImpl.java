@@ -163,13 +163,24 @@ public class ParkingServiceImpl implements ParkingService {
     }
 
     @Override
-    public void updateAvailability(Long id, boolean b) {
+    public void updateAvailabilityRelease(Long id, boolean b) {
         Parking parking = parkingRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Parking space not found with id " + id));
 
         parking.setAvailable(b);
         parking.setOwnerId(null);
         parking.setNumberPlate("");
+        parking.setLastUpdated(LocalDateTime.now()); // optional
+        parkingRepository.save(parking);
+    }
+
+
+    @Override
+    public void updateAvailabilityReserve(Long id, boolean b) {
+        Parking parking = parkingRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Parking space not found with id " + id));
+
+        parking.setAvailable(b);
         parking.setLastUpdated(LocalDateTime.now()); // optional
         parkingRepository.save(parking);
     }

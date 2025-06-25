@@ -27,7 +27,9 @@ public interface ParkingService {
 
     Long getCountByZone(String zone);
 
-    void updateAvailability(Long id, boolean b);
+    void updateAvailabilityRelease(Long id, boolean b);
+
+    void updateAvailabilityReserve(Long id, boolean b);
 
     List<ParkingResponse> getByLocation(String location);
 }

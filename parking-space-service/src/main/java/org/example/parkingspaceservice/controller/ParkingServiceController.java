@@ -63,7 +63,7 @@ public class ParkingServiceController {
 
     @PatchMapping("/{id}/reserve")
     public ResponseEntity<String> reserveParking(@PathVariable Long id) {
-        parkingService.updateAvailability(id, false); // false = occupied
+        parkingService.updateAvailabilityReserve(id, false); // false = occupied
         return ResponseEntity.ok("Parking space marked as reserved.");
     }
 
@@ -71,7 +71,7 @@ public class ParkingServiceController {
 
     @PatchMapping("/{id}/release")
     public ResponseEntity<String> releaseParking(@PathVariable Long id) {
-        parkingService.updateAvailability(id, true); // true = available
+        parkingService.updateAvailabilityRelease(id, true); // true = available
         return ResponseEntity.ok("Parking space marked as available.");
     }
 
